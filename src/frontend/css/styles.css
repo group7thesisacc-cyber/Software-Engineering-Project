@@ -13,12 +13,12 @@ form {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-/* Make inputs, selects, and button the same width and aligned */
+/* All inputs, selects, and buttons aligned to same width */
 input, select, button {
-    width: 100%;            /* full width of form */
+    width: 100%;
     margin: 10px 0;
     padding: 10px;
-    box-sizing: border-box; /* include padding in width */
+    box-sizing: border-box;
 }
 
 button {

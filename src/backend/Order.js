@@ -1,3 +1,4 @@
+// Order.js
 class Order {
     constructor(customerName, foodItem, quantity) {
         this.customerName = customerName;
@@ -5,5 +6,4 @@ class Order {
         this.quantity = quantity;
     }
 }
-
 module.exports = Order;

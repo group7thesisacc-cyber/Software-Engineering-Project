@@ -8,13 +8,15 @@
 
 ## Project Overview
 
-The **Smart Cafeteria System** is a proposed **web-based solution** designed to improve cafeteria operations through organized food ordering and digital order tracking.
+The **Smart Cafeteria System** is a **web-based solution** designed to improve cafeteria operations through organized food ordering, digital order tracking, and streamlined data management.
 
 This repository contains the **Order Management Subsystem**, developed as part of:
 
 > **Practical Activity Assessment 1 – Demonstrating a Working Subsystem**
 
 The subsystem focuses on handling cafeteria food orders using a structured architecture composed of **Frontend**, **Backend**, and **Database** components while applying **Object-Oriented Programming (OOP)** and modular design principles.
+
+With the integration of **DB Browser for SQLite**, database management, schema creation, and queries can now be easily visualized and tested using a graphical interface.
 
 ---
 
@@ -26,6 +28,7 @@ The subsystem focuses on handling cafeteria food orders using a structured archi
 * Practice modular system development
 * Utilize **Git version control workflow**
 * Perform basic subsystem testing
+* Use **DB Browser for SQLite** to manage and view database tables
 
 ---
 
@@ -39,8 +42,8 @@ Instead of implementing the entire cafeteria platform, this project focuses on a
 * Create cafeteria food orders
 * Send order data from frontend to backend
 * Process orders through controller logic
-* Store orders in a database table
-* Retrieve and validate order information
+* Store orders in a **SQLite database**
+* Retrieve and validate order information using DB Browser for SQLite
 
 This subsystem represents the foundational workflow of a smart cafeteria ordering process.
 
@@ -55,10 +58,10 @@ User Interface (Frontend)
         ↓
 Business Logic (Backend)
         ↓
-Data Storage (Database)
+Data Storage (Database - SQLite)
 ```
 
-Each layer performs a specific responsibility to maintain modularity and clarity.
+Each layer has a clear responsibility to maintain modularity and clarity.
 
 ---
 
@@ -72,29 +75,30 @@ Practical Activity 1/
 ├── README.md
 ├── .gitignore
 │
-├── src
-│    ├── frontend/                     # Subsystem User Interface
-│    │     ├── Pages/            
-│    │     │   └── orderPage.html        # Order page layout
+├── src/
+│    ├── frontend/                     # User Interface
+│    │     ├── Pages/
+│    │     │   └── orderPage.html       # Order page layout
 │    │     │
 │    │     ├── css/
-│    │     │   └── styles.css            # UI styling
+│    │     │   └── styles.css           # UI styling
 │    │     │
-│    │     └── Java/
-│    │          ├── orderUI.js            # Handles user interaction
-│    │          └── apiClient.js          # Communicates with backend API
+│    │     └── JavaScript/
+│    │          ├── orderUI.js          # Handles user interaction
+│    │          └── apiClient.js        # Communicates with backend API
 │    │
-│    ├── backend/                      # Subsystem Logic Layer
+│    ├── backend/                      # Business Logic Layer
 │    │    ├── server.js                 # Server runner
 │    │    ├── Order.js                  # Order data model
 │    │    └── orderController.js        # Order processing logic
 │    │
-│    ├── database/                     # Subsystem Data Layer
-│    │    ├── db.js                     # Database connection
-│    │    └── orderSchema.sql           # Orders table structure
+│    ├── database/                     # Database Layer
+│    │    ├── db.js                     # SQLite connection setup
+│    │    ├── orderSchema.sql           # Orders table creation (optional for reference)
+│    │    └── cafeteria.db              # SQLite database file
 │    │
-     └── tests/
-          └── order.test.js             # Subsystem tests
+│    └── tests/
+│          └── order.test.js           # Subsystem tests
 ```
 
 ---
@@ -105,7 +109,8 @@ Practical Activity 1/
 * **CSS3** – Interface styling
 * **JavaScript (Node.js)** – Application logic
 * **Express.js** – Backend server
-* **SQL** – Database schema
+* **SQLite** – Database storage
+* **DB Browser for SQLite** – GUI for database management
 * **Jest** – Testing framework
 * **Git** – Version control
 
@@ -119,6 +124,8 @@ Practical Activity 1/
 | IDE              | Visual Studio Code |
 | Node.js          | 18.x               |
 | Git              | 2.x                |
+| SQLite           | 3.x                |
+| DB Browser       | Latest             |
 
 ---
 
@@ -138,13 +145,18 @@ node backend/server.js
 
 ### 3. Open the Frontend
 
-Open the file below in a browser:
+Open the file in a browser:
 
 ```
-frontend/orderPage.html
+src/frontend/Pages/orderPage.html
 ```
 
-### 4. Run Tests
+### 4. View and Manage Database
+
+* Open `src/database/cafeteria.db` using **DB Browser for SQLite**
+* View, edit, or run SQL queries directly on the orders table
+
+### 5. Run Tests
 
 ```bash
 npx jest
@@ -154,15 +166,13 @@ npx jest
 
 ## Development Workflow
 
-The subsystem was developed using an incremental and modular workflow:
-
 1. Designed subsystem scope and architecture
-2. Implemented Order data model
+2. Implemented **Order** data model
 3. Created controller logic
 4. Built frontend interaction interface
-5. Connected backend to database schema
+5. Connected backend to **SQLite** database
 6. Added automated tests
-7. Managed versions using Git commits
+7. Managed versions using **Git commits**
 
 ---
 
