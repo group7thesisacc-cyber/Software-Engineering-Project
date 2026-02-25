@@ -1,28 +1,99 @@
-# Node.js dependencies
-/node_modules/
-package-lock.json
-npm-debug.log*
+# ===============================
 
-# Logs
-logs/
-*.log
+# Smart Cafeteria System
+
+# .gitignore
+
+# ===============================
+
+# -------------------------------
+
+# Node.js Dependencies
+
+# -------------------------------
+
+node_modules/
+npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# OS generated files
+# -------------------------------
+
+# Environment Variables
+
+# -------------------------------
+
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# -------------------------------
+
+# Logs
+
+# -------------------------------
+
+logs
+*.log
+
+# -------------------------------
+
+# OS Generated Files
+
+# -------------------------------
+
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# VS Code settings
+# -------------------------------
+
+# IDE / Editor Settings
+
+# -------------------------------
+
 .vscode/
-*.code-workspace
+.idea/
+*.swp
+*.swo
 
-# Environment variables
-.env
+# -------------------------------
 
-# Test coverage reports
-coverage/
+# Build / Temporary Files
 
-# Optional: build or dist folders (if you later add front-end build)
+# -------------------------------
+
 dist/
 build/
+coverage/
+.tmp/
+temp/
+
+# -------------------------------
+
+# Database Files (Local Only)
+
+# -------------------------------
+
+*.sqlite
+*.db
+
+# -------------------------------
+
+# Test Coverage
+
+# -------------------------------
+
+coverage/
+
+# -------------------------------
+
+# Miscellaneous
+
+# -------------------------------
+
+*.bak
+*.old
+*.cache
