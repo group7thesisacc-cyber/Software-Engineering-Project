@@ -72,27 +72,29 @@ Practical Activity 1/
 ├── README.md
 ├── .gitignore
 │
-├── frontend/                     # Subsystem User Interface
-│   ├── orderPage.html            # Order page layout
-│   │
-│   ├── css/
-│   │   └── styles.css            # UI styling
-│   │
-│   └── js/
-│       ├── orderUI.js            # Handles user interaction
-│       └── apiClient.js          # Communicates with backend API
-│
-├── backend/                      # Subsystem Logic Layer
-│   ├── server.js                 # Server runner
-│   ├── Order.js                  # Order data model
-│   └── orderController.js        # Order processing logic
-│
-├── database/                     # Subsystem Data Layer
-│   ├── db.js                     # Database connection
-│   └── orderSchema.sql           # Orders table structure
-│
-└── tests/
-    └── order.test.js             # Subsystem tests
+├── src
+│    ├── frontend/                     # Subsystem User Interface
+│    │     ├── Pages/            
+│    │     │   └── orderPage.html        # Order page layout
+│    │     │
+│    │     ├── css/
+│    │     │   └── styles.css            # UI styling
+│    │     │
+│    │     └── Java/
+│    │          ├── orderUI.js            # Handles user interaction
+│    │          └── apiClient.js          # Communicates with backend API
+│    │
+│    ├── backend/                      # Subsystem Logic Layer
+│    │    ├── server.js                 # Server runner
+│    │    ├── Order.js                  # Order data model
+│    │    └── orderController.js        # Order processing logic
+│    │
+│    ├── database/                     # Subsystem Data Layer
+│    │    ├── db.js                     # Database connection
+│    │    └── orderSchema.sql           # Orders table structure
+│    │
+     └── tests/
+          └── order.test.js             # Subsystem tests
 ```
 
 ---

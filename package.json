@@ -6,11 +6,27 @@
   "directories": {
     "test": "tests"
   },
- "scripts": {
-  "test": "echo \"All tests passed!\""
-},
+  "scripts": {
+    "test": "echo \"All tests passed!\""
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/group7thesisacc-cyber/Software-Engineering-Project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/group7thesisacc-cyber/Software-Engineering-Project/issues"
+  },
+  "homepage": "https://github.com/group7thesisacc-cyber/Software-Engineering-Project#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mysql2": "^3.18.0"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0"
+  }
 }

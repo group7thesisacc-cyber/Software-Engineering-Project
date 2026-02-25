@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Cafeteria - Order</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <h1>Smart Cafeteria System</h1>
+    <h2>Place Order</h2>
+
+    <form id="orderForm">
+        <input type="text" id="customerName" placeholder="Customer Name" required>
+
+        <select id="foodItem">
+            <option value="Burger">Burger</option>
+            <option value="Fried Chicken">Fried Chicken</option>
+            <option value="Spaghetti">Spaghetti</option>
+        </select>
+
+        <input type="number" id="quantity" placeholder="Quantity" min="1" required>
+
+        <button type="submit">Submit Order</button>
+    </form>
+
+    <p id="responseMessage"></p>
+
+    <script src="../JavaScript/apiClient.js"></script>
+    <script src="../JavaScript/orderUI.js"></script>
+
+</body>
+</html>
