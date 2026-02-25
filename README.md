@@ -65,7 +65,9 @@ Each layer performs a specific responsibility to maintain modularity and clarity
 ## Project Structure
 
 ```
-smart-cafeteria-system/
+Software-Engineering-Project/
+│
+Practical Activity 1/
 │
 ├── README.md
 ├── .gitignore
