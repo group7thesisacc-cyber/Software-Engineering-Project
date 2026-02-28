@@ -1,33 +1,313 @@
+/* ================= GLOBAL ================= */
+
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f4f6f8;
+    margin: 0;
+    background: #f4f6f8;
 }
 
-form {
+.hidden {
+    display: none !important;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
     background: white;
-    padding: 20px;
-    margin: auto;
-    width: 300px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 12px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* All inputs, selects, and buttons aligned to same width */
-input, select, button {
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    font-size: 22px;
+}
+
+.nav-center {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-btn {
+    background: #ecf0f1;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.nav-btn:hover {
+    background: #dfe6e9;
+}
+
+.order-badge {
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 7px;
+    font-size: 12px;
+    margin-left: 6px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile {
+    width: 35px;
+    height: 35px;
+    background: #2ecc71;
+    border-radius: 50%;
+}
+
+/* ================= MENU ================= */
+
+.menu-container {
+    width: 90%;
+    margin: 30px auto;
+}
+
+.menu-container h2 {
+    margin-top: 30px;
+}
+
+.food-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.food-card {
+    background: white;
+    padding: 15px;
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.food-card:hover {
+    transform: translateY(-4px);
+}
+
+.food-card img {
     width: 100%;
-    margin: 10px 0;
-    padding: 10px;
-    box-sizing: border-box;
+    border-radius: 8px;
 }
 
-button {
-    background-color: #2ecc71;
+.food-card h3 {
+    margin: 10px 0 5px;
+}
+
+.food-card button {
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+    background: #2ecc71;
     color: white;
     border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.food-card button:hover {
+    background: #27ae60;
+}
+
+/* ================= MODAL ================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* BIGGER WINDOW */
+.modal-content {
+    background: white;
+    width: 900px;
+    min-height: 520px;
+    max-height: 80vh;        /* limits modal height */
+    border-radius: 12px;
+    display: flex;
+    gap: 40px;
+    padding: 0;              /* remove top/bottom padding for image stretching */
+    overflow: hidden;        /* prevent image overflow */
+}
+
+/* TOP CONTENT (push down a bit) */
+.modal-top {
+    margin-top: 25px; /* pushes everything below close button */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* optional spacing between elements */
+}
+
+/* LEFT IMAGE */
+.modal-left {
+    flex: 0 0 320px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-left img {
+    width: 100%;
+    height: 100%;       /* stretch vertically */
+    object-fit: cover;  /* maintain aspect ratio and fill container */
+}
+
+/* RIGHT SIDE CONTENT */
+.modal-right {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 30px;
+    justify-content: space-between; /* pushes pre-order button to bottom */
+}
+
+/* Push Pre-order button to bottom */
+.modal-right .preorder-bottom {
+    margin-top: auto; /* pushes to bottom */
+    background: #2ecc71;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #27ae60;
+.modal-right .preorder-bottom:hover {
+    background: #27ae60;
+}
+/* CLOSE BUTTON */
+
+/* CLOSE BUTTON */
+.close-btn {
+    position: absolute;  /* relative to .modal-right */
+    top: 10px;
+    right: 10px;
+    font-size: 22px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    z-index: 5;
+}
+
+/* TOP ORDER CONTROLS */
+
+.top-order {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* PREORDER BUTTON (TOP RIGHT) */
+
+.preorder-top {
+    background: #2ecc71;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.preorder-top:hover {
+    background: #27ae60;
+}
+
+/* QUANTITY SELECTOR */
+
+.quantity-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.quantity-box button {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+    border: none;
+    background: #ecf0f1;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.quantity-box button:hover {
+    background: #dcdde1;
+}
+
+.quantity-box span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* ADDONS + INPUTS */
+
+.modal-right h1 {
+    margin-top: 10px;
+}
+
+.modal-right h4 {
+    margin-top: 20px;
+}
+
+.modal-right input[type="time"] {
+    margin-top: 8px;
+    padding: 8px;
+    width: 200px;
+}
+
+/* ================= SUCCESS BOX ================= */
+
+.success-box {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.success-content {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.success-content button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    background: #2ecc71;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.success-content button:hover {
+    background: #27ae60;
 }

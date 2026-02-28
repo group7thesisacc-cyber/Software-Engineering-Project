@@ -1,32 +1,77 @@
-// src/frontend/JavaScript/orderUI.js
+/**
+ * @jest-environment jsdom
+ */
 
-// Function to send data to backend
-async function createOrder(order) {
-    const response = await fetch("http://localhost:3000/orders", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(order)
-    });
-    return await response.json();
-}
+const fs = require("fs");
+const path = require("path");
 
-// Listen to form submit
-document.getElementById("orderForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
+describe("Order UI Tests", () => {
+  beforeEach(() => {
+    // Mock full DOM (important!)
+    document.body.innerHTML = `
+      <div id="modalFoodName"></div>
+      <div id="modalFoodPrice"></div>
+      <div id="quantityValue">1</div>
+      <div id="orderModal" class="hidden"></div>
+      <div id="successBox" class="hidden"></div>
+      <div id="orderCount"></div>
 
-    const order = {
-        customerName: document.getElementById("customerName").value,
-        foodItem: document.getElementById("foodItem").value,
-        quantity: document.getElementById("quantity").value
-    };
+      <input type="checkbox" id="riceAddon" />
+      <input type="checkbox" id="utensilAddon" />
+      <input type="time" id="pickupTime" />
+    `;
 
-    // Send to backend
-    try {
-        const result = await createOrder(order);
-        document.getElementById("responseMessage").innerText = result.message;
-        this.reset(); // clear form
-    } catch (err) {
-        document.getElementById("responseMessage").innerText = "Error submitting order";
-        console.error(err);
-    }
+    // Load your actual JS file
+    const scriptPath = path.resolve(
+      __dirname,
+      "../frontend/JavaScript/orderUI.js"
+    );
+
+    const scriptContent = fs.readFileSync(scriptPath, "utf8");
+
+    eval(scriptContent);
+  });
+
+  test("openOrderModal updates modal correctly", () => {
+    openOrderModal("Fried Chicken", 120);
+
+    expect(document.getElementById("modalFoodName").textContent)
+      .toBe("Fried Chicken");
+
+    expect(document.getElementById("modalFoodPrice").textContent)
+      .toBe("₱120.00");
+
+    expect(document.getElementById("quantityValue").textContent)
+      .toBe("1");
+
+    expect(document.getElementById("orderModal").classList.contains("hidden"))
+      .toBe(false);
+  });
+
+  test("quantity increases correctly", () => {
+    openOrderModal("Adobo", 90);
+
+    changeQty(1);
+
+    expect(document.getElementById("quantityValue").textContent)
+      .toBe("2");
+  });
+
+  test("quantity does not go below 1", () => {
+    openOrderModal("Adobo", 90);
+
+    changeQty(-1);
+
+    expect(document.getElementById("quantityValue").textContent)
+      .toBe("1");
+  });
+
+  test("closeModal hides modal", () => {
+    openOrderModal("Burger", 80);
+
+    closeModal();
+
+    expect(document.getElementById("orderModal").classList.contains("hidden"))
+      .toBe(true);
+  });
 });

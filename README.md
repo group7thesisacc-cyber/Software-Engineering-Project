@@ -80,13 +80,18 @@ Practical Activity 1/
 │    │     ├── Pages/
 │    │     │   └── orderPage.html       # Order page layout
 │    │     │
+│    │     ├── pics/
+│    │     │    ├── Spagetti.jpg
+│    │     │    ├── Chicken.jpg
+│    │     │    └── Burger.jpg
+│    │     │
 │    │     ├── css/
 │    │     │   └── styles.css           # UI styling
 │    │     │
 │    │     └── JavaScript/
 │    │          ├── orderUI.js          # Handles user interaction
 │    │          └── apiClient.js        # Communicates with backend API
-│    │
+│    │ 
 │    ├── backend/                      # Business Logic Layer
 │    │    ├── server.js                 # Server runner
 │    │    ├── Order.js                  # Order data model

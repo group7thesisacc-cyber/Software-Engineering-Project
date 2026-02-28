@@ -1,19 +1,28 @@
-// src/backend/orderController.js
 const db = require("../database/db");
 
 exports.createOrder = (req, res) => {
-    const { customerName, foodItem, quantity } = req.body;
+    const { customerName, foodItem, quantity, rice, utensils, pickupTime } = req.body;
 
-    // Print submitted form data in VSCode terminal
-    console.log("Received order from frontend:", req.body);
+    const sql = `
+        INSERT INTO orders
+        (customer_name, food_item, quantity, rice, utensils, pickup_time)
+        VALUES (?, ?, ?, ?, ?, ?)
+    `;
 
-    const query = `INSERT INTO orders (customer_name, food_item, quantity) VALUES (?, ?, ?)`;
+    db.run(
+        sql,
+        [customerName, foodItem, quantity, rice ? 1 : 0, utensils ? 1 : 0, pickupTime],
+        function (err) {
 
-    db.run(query, [customerName, foodItem, quantity], function(err) {
-        if (err) {
-            console.error("Database error:", err.message);
-            return res.status(500).json({ message: "Database error" });
+            if (err) {
+                console.error(err.message);
+                return res.status(500).json({ error: err.message });
+            }
+
+            res.json({
+                success: true,
+                orderId: this.lastID
+            });
         }
-        res.json({ message: "Order successfully placed!" });
-    });
+    );
 };

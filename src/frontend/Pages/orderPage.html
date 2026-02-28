@@ -7,26 +7,201 @@
 </head>
 <body>
 
-    <h1>Smart Cafeteria System</h1>
-    <h2>Place Order</h2>
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+    <div class="nav-left">
+        <div class="logo">🍽</div>
+        <h2>School Cafeteria</h2>
+    </div>
 
-    <form id="orderForm">
-        <input type="text" id="customerName" placeholder="Customer Name" required>
-        <select id="foodItem">
-            <option value="" disabled selected>Select Food Item</option>
-            <option value="Burger">Burger</option>
-            <option value="Fried Chicken">Fried Chicken</option>
-            <option value="Spaghetti">Spaghetti</option>
-        </select>
-        <input type="number" id="quantity" placeholder="Quantity" min="1" required>
-        <button type="submit">Submit Order</button>
-    </form>
+    <div class="nav-center">
+        <button class="nav-btn">Today's Menu</button>
+        <button class="nav-btn">
+            My Orders
+            <span id="orderCount" class="order-badge">0</span>
+        </button>
+    </div>
 
-    <p id="responseMessage"></p>
+    <div class="nav-right">
+        <div class="profile"></div>
+        <span>Welcome User11037!</span>
+    </div>
+</nav>
 
-    <!-- JS scripts -->
-    <script src="../JavaScript/apiClient.js"></script>
-    <script src="../JavaScript/orderUI.js"></script>
+<!-- ================= MENU PAGE ================= -->
+<div class="menu-container">
+
+    <h2>Today's Lunch</h2>
+    <div class="food-grid">
+
+        <div class="food-card">
+            <img src="../pics/Chicken.jpg" alt="Fried Chicken">
+            <h3>Fried Chicken</h3>
+            <p>₱120.00</p>
+            <button onclick="openOrderModal('Fried Chicken',120,'../pics/Chicken.jpg')">
+                Pre-order
+            </button>
+        </div>
+
+        <div class="food-card">
+            <img src="../pics/Kare kare.jpg" alt="Kare kare">
+            <h3>Kare-kare</h3>
+            <p>₱90.00</p>
+            <button onclick="openOrderModal('Kare-kare', 90,'../pics/Kare kare.jpg')">
+                Pre-order
+            </button>
+        </div>
+
+        <div class="food-card">
+            <img src="../pics/Adobo.jpg" alt="Adobo">
+            <h3>Adobo</h3>
+            <p>₱90.00</p>
+            <button onclick="openOrderModal('Adobo', 90,'../pics/Adobo.jpg')">
+                Pre-order
+            </button>
+        </div>
+
+        <div class="food-card">
+            <img src="../pics/Sinigang.jpg" alt="Sinigang">
+            <h3>Sinigang</h3>
+            <p>₱90.00</p>
+            <button onclick="openOrderModal('Sinigang', 90,'../pics/Sinigang.jpg')">
+                Pre-order
+            </button>
+        </div>
+
+        <div class="food-card">
+            <img src="../pics/Lumpiang Shanghai.jpg" alt="Lumpiang Shanghai">
+            <h3>Lumpiang Shanghai</h3>
+            <p>₱90.00</p>
+            <button onclick="openOrderModal('Lumpiang Shanghai', 90,'../pics/Lumpiang Shanghai.jpg')">
+                Pre-order
+            </button>
+        </div>
+
+    </div>
+
+    <h2>Today's Snack</h2>
+    <div class="food-grid">
+
+        <div class="food-card">
+            <img src="../pics/Burger.jpg" alt="Burger">
+            <h3>Burger</h3>
+            <p>₱75.00</p>
+            <button onclick="openOrderModal('Burger',75,'../pics/Burger.jpg')">
+                Pre-order
+            </button>
+        </div>
+
+        <div class="food-card">
+            <img src="../pics/Spagetti.jpg" alt="Spaghetti">
+            <h3>Spaghetti</h3>
+            <p>₱75.00</p>
+            <button onclick="openOrderModal('Spaghetti',75,'../pics/Spagetti.jpg')">
+                Pre-order
+            </button>
+        </div>
+
+        <div class="food-card">
+            <img src="../pics/Carbonara.jpg" alt="Creamy Carbonara">
+            <h3>Creamy Carbonara</h3>
+            <p>₱75.00</p>
+            <button onclick="openOrderModal('Creamy Carbonara',75,'../pics/Carbonara.jpg')">
+                Pre-order
+            </button>
+        </div>
+
+        <div class="food-card">
+            <img src="../pics/Shawarma.jpg" alt="Shawarma">
+            <h3>Shawarma</h3>
+            <p>₱75.00</p>
+            <button onclick="openOrderModal('Shawarma',75,'../pics/Shawarma.jpg')">
+                Pre-order
+            </button>
+        </div>
+
+        <div class="food-card">
+            <img src="../pics/Turon.jpg" alt="Banana Turon">
+            <h3>Banana Turon</h3>
+            <p>₱75.00</p>
+            <button onclick="openOrderModal('CBanana Turon',75,'../pics/Turon.jpg')">
+                Pre-order
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= ORDER MODAL ================= -->
+<div id="orderModal" class="modal hidden">
+
+    <div class="modal-content">
+
+        <!-- LEFT IMAGE -->
+        <div class="modal-left">
+            <img id="modalFoodImage" src="" alt="Selected Food">
+        </div>
+
+        <!-- RIGHT CONTENT -->
+        <div class="modal-right">
+
+        <!-- CLOSE BUTTON -->
+        <button class="close-btn" onclick="closeModal()">✕</button>
+
+            <div class="modal-top">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h1 id="modalFoodName"></h1>
+                    <div class="quantity-box">
+                        <button onclick="changeQty(-1)">−</button>
+                        <span id="quantityValue">1</span>
+                        <button onclick="changeQty(1)">+</button>
+                    </div>
+                </div>
+
+                <h3 id="modalFoodPrice"></h3>
+
+                <h4>Add-ons</h4>
+                <label>
+                    <input type="checkbox" id="riceAddon"> Rice (+₱20)
+                </label><br>
+                <label>
+                    <input type="checkbox" id="utensilAddon"> Utensils (+₱5)
+                </label>
+
+                <h4>Pick-up Time</h4>
+                <input type="time" id="pickupTime">
+            </div>
+
+            <!-- BOTTOM PRE-ORDER BUTTON -->
+            <button class="preorder-top" onclick="submitOrder()" style="margin-top: auto;">Pre-order</button>
+        </div>
+    </div>
+</div>
+
+<!-- ================= SUCCESS MESSAGE ================= -->
+<div id="successBox" class="success-box hidden">
+    <div class="success-content">
+        <h2>Your order has been placed successfully!</h2>
+        <button onclick="closeSuccess()">OK</button>
+    </div>
+</div>
+
+<script src="../JavaScript/orderUI.js"></script>
+<script>
+/* Update modal image dynamically */
+function openOrderModal(name, price, imgPath) {
+    selectedFood = name;
+    quantity = 1;
+
+    document.getElementById("modalFoodName").innerText = name;
+    document.getElementById("modalFoodPrice").innerText = "₱" + price.toFixed(2);
+    document.getElementById("quantityValue").innerText = quantity;
+    document.getElementById("modalFoodImage").src = imgPath;
+
+    document.getElementById("orderModal").classList.remove("hidden");
+}
+</script>
 
 </body>
 </html>
